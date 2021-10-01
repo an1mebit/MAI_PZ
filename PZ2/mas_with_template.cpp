@@ -2,6 +2,8 @@
 #include <execution>
 #include <cmath>
 
+
+
 template<typename T>
 class mas
 {
@@ -17,7 +19,7 @@ public:
 	~mas();
 
 	void print();
-	void add(mas<T>& arr);
+	void add(int value);
 	void summ(mas<T>& array);
 	void subt(mas<T>& array);
 	void distance(mas<T>& arr1 , mas<T>& arr2);
@@ -28,26 +30,30 @@ template<typename T>
 mas<T>::mas(int count) : size(count)
 {
 	arr = new T[size];
-	for (int i = 0; i < size; i++)
-		arr[i] = i;
 	if (size == NULL)
 		throw std::bad_alloc();
+	if (size > 10000)
+		throw std::out_of_range("Out of range");
+	for (int i = 0; i < size; i++)
+		arr[i] = i;
 }	
 
 template<typename T>
 mas<T>::mas(const mas<T>& array) : size(array.size), arr(nullptr)
 {
 	arr = new T[size];
+	if (size == NULL)
+		throw std::bad_alloc();
 	for (int i = 0; i < size; i++)
 		arr[i] = array.arr[i];
-	if (array.size < size)
+	if (size > 10000)
 		throw std::out_of_range("Out of range");
 }
 
 template<typename T>
 mas<T>::~mas()
 {
-	//delete[] arr;
+	delete[] arr;
 }
 
 template<typename T>
@@ -59,36 +65,25 @@ void mas<T>::print()
 }
 
 template<typename T>
-void mas<T>::add(mas<T>& arr)
+void mas<T>::add(int value)
 {
-	int val = arr.size;
-	arr.arr[arr.size] = val;
-	arr.size++;
-		
-	/*
-			if (arr.size > 100 || arr.size < -100)
-		{
-			std::cout << "TOO MUCH" << std::endl;
-			exit(-1);
-		}
-	*/
-		
-	try
+
+	if (value >= 101 || value <= -101)
+		throw std::invalid_argument("THE_SCATEMAN_WORLD");
+
+	int* mas = new int[size + 1];
+	if (size == NULL)
+		throw std::bad_alloc();
+	for (int i = 0; i < size; i++)
 	{
-		if (arr.size > 101 || arr.size < 101)
-		{
-			throw 101;
-			throw - 101;
-		}
-
-
-
+		mas[i] = arr[i];
 	}
-	catch (int error)
-	{
-			std::cerr << "Invalid argument: " << error << std::endl;
-			exit(-1);
-	}
+	mas[size] = value;
+	delete[] arr;
+	arr = mas;
+	if (size > 10000)
+		throw std::out_of_range("Out of range");
+	size++;
 }
 
 template<typename T>
@@ -138,17 +133,17 @@ void mas<T>::distance(mas<T>& arr1, mas<T>& arr2)
 		ret += dist * dist;
 	}
 
-	if (ret > 0.0)
+	if (ret > 0)
 		sqrt(ret);
 	else
-		ret = 0.0;
+		ret = 0;
 	std::cout << "Distance between is two mas: " << ret << std::endl;
 }
 
 int main()
 {
 	mas<int> arr(100);
-	arr.add(arr);
+	arr.add(15);
 	arr.print();
 
 	mas<int> arr2 = arr;
