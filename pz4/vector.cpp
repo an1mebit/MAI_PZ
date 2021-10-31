@@ -35,8 +35,8 @@ int main()
 	}
 	cout << endl;
 
-	cout << "sum of numbers of first vector is: " << sum1 / num1 << endl;
-	cout << "sum of numbers of second vector is: " << sum2 / num2 << endl;
+	cout << "arithmetic mean of numbers of first vector is: " << float(sum1 / num1) << endl;
+	cout << "arithmetic mean of numbers of second vector is: " << float(sum2 / num2) << endl;
 
 	cout << "same elements: ";
 	for (pair<int, int> tmp : number)
