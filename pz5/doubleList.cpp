@@ -86,7 +86,7 @@ T List<T>::get(int id)
 
 	if (head->uid == id)
 	{
-		head->calls++;+		head	0x00000000 <NULL>	Elem<int> *
+		head->calls++;
 
 		sort(head);
 		return head->data;
@@ -102,18 +102,21 @@ T List<T>::get(int id)
 template<class T>
 void List<T>::swap(Elem<T>* l1, Elem<T>* l2)
 {
-	T pdata = l1->data;
+	Elem<T> tmp;
+	tmp = l1;
+	l1 = l2;
+	l1->next = tmp.next;
+	tmp->next = l2->next;
+	l2 = tmp;
+
 	int id = l1->uid;
 	int cls = l1->calls;
 
-	l1->data = l2->data;
 	l1->uid = l2->uid;
 	l1->calls = l2->calls;
 
-	l2->data = pdata;
 	l2->uid = id;
 	l2->calls = cls;
-
 }
 
 template<class T>
