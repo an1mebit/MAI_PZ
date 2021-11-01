@@ -107,16 +107,9 @@ void List<T>::swap(Elem<T>* l1, Elem<T>* l2)
 	l1 = l2;
 	l1->next = tmp.next;
 	tmp->next = l2->next;
+	l2->prev = l1->prev;
+	l1->prev = tmp->prev;
 	l2 = tmp;
-
-	int id = l1->uid;
-	int cls = l1->calls;
-
-	l1->uid = l2->uid;
-	l1->calls = l2->calls;
-
-	l2->uid = id;
-	l2->calls = cls;
 }
 
 template<class T>
