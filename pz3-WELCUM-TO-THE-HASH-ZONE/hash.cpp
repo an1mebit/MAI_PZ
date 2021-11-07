@@ -31,7 +31,7 @@ int generateHash(const char* pFile)
     for (; ; ) {
         
         ofstream file(pFile, ios::app);
-        file << hashEncrypt(number) << endl;
+        file << hashEncrypt(number) << endl; //Чтобы записывать в файл обычные строки, а не хэш, достаточно просто заменить hashEncrypy(number) на number
 
 
         
