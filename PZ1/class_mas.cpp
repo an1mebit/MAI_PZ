@@ -14,7 +14,7 @@ public:
 	~mas();
 
 	void print();
-	void add(mas & arr);
+	void add(int count);
 	void summ(mas & array);
 	void subt(mas & array);
 
@@ -36,7 +36,8 @@ mas::mas(const mas& array): size(array.size), arr(nullptr)
 
 mas::~mas()
 {
-	//delete[] arr;
+	std::cout << "destruct"<<std::endl;
+	delete[] arr;
 }
 
 void mas::print()
@@ -46,17 +47,22 @@ void mas::print()
 	std::cout << std::endl;
 }
 
-void mas::add(mas & arr)
+void mas::add(int value)
 {
-	int val = arr.size;
-	arr.arr[arr.size] = val;
-	arr.size++;
-
-	if (arr.size > 100 || arr.size < -100)
+	if (value >= 101 || value <= -101)
 	{
-		std::cout << "TOO MUCH" << std::endl;
+		std::cout << "OUT OF RANGE" << std::endl;
 		exit(-1);
 	}
+	int* mas = new int[size + 1];
+	for (int i = 0; i < size; i++)
+	{
+		mas[i] = arr[i];
+	}
+	mas[size] = value;
+	delete[] arr;
+	arr = mas;
+	size++;
 }
 
 void mas::summ(mas & array)
@@ -94,11 +100,11 @@ void mas::subt(mas& array)
 int main()
 {
 	mas arr(10);
-	arr.add(arr);
+	arr.add(34);
 	arr.print();
 
 
-	mas arr2 = arr;
+	mas arr2 (arr);
 	arr2.print();
 
 	std::cout << std::endl;
