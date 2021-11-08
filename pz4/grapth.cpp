@@ -6,6 +6,7 @@ class Graph
 {
     bool** adjMatrix;
     int numVertices;
+    bool** pathMatrix;
 
 public:
     Graph(int numVertices);
@@ -15,6 +16,7 @@ public:
     void removeEdge(int i, int j);
     bool isEdge(int i, int j);
     void table();
+    void tableDost();
 
 };
 
@@ -66,6 +68,23 @@ void Graph::table()
     }
 }
 
+void ::Graph::tableDost()
+{
+    for (int i = 0; i < numVertices; i++)
+    {
+        for (int j = 0; j < numVertices; j++)
+            pathMatrix[i][j] = adjMatrix[i][j];
+    }
+
+    for (int k = 0; k < numVertices; k++)
+    {
+        for (int i = 0; i < numVertices; i++)
+            if (pathMatrix[i][k] == 1)
+                for (int j = 0; j < numVertices; j++)
+                    pathMatrix[i][j] = (pathMatrix[i][j] || pathMatrix[k][j]);
+    }
+}
+
 int main()
 {
     cout << "Enter number of vertics n endges" << endl;
@@ -84,4 +103,5 @@ int main()
     }
 
     g.table();
+    g.tableDost();
 }
