@@ -118,11 +118,18 @@ static int read_s32(FILE* fp)
 }
 
 int main()
-{  
+{
+    /*
     Image img1("D:/projects/Proga-pz-6/Proga-pz-6/apples/apple_1.bmp"),
           img2("D:/projects/Proga-pz-6/Proga-pz-6/apples/apple_2.bmp"),
           img3("D:/projects/Proga-pz-6/Proga-pz-6/apples/apple_3.bmp"), 
           img4("D:/projects/Proga-pz-6/Proga-pz-6/apples/apple_4.bmp");
+    */
+	
+    Image img1("D:/projects/Proga-pz-6/Proga-pz-6/bmp_sailor_moon/sailor_1.bmp"),
+          img2("D:/projects/Proga-pz-6/Proga-pz-6/bmp_sailor_moon/sailor_2.bmp"),
+          img3("D:/projects/Proga-pz-6/Proga-pz-6/bmp_sailor_moon/sailor_3.bmp"), 
+          img4("D:/projects/Proga-pz-6/Proga-pz-6/bmp_sailor_moon/sailor_4.bmp");
 
     cout <<"Image1 + Image1:" << img1 + img1 << endl;
     cout << "Image2 + Image2:" << img2 + img2 << endl;
@@ -137,6 +144,6 @@ int main()
     cout << "Image 2 + Image4: " << img2 + img4 << endl;
 
     cout << "Image 3 + Image4: " << img3 + img4 << endl;
-    cout << "Image 3 + Image4: " << img4 + img3 << endl;
+    cout << "Image 4 + Image3: " << img4 + img3 << endl;
 
 }
